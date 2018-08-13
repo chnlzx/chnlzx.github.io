@@ -89,7 +89,7 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/7174469-b122d171c48b505e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/7174469-9a95e7d6e41f6def.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2018-08-13T01:25:25.817Z">
+<meta property="og:updated_time" content="2018-08-13T01:29:09.697Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android Studio创建SO库并在项目中使用">
 <meta name="twitter:description" content="初学者避免踩坑提示 如果想引用自己生成的so库，文件包名的路径必须和c文件夹中函数名的路径保持一致。">
@@ -372,10 +372,13 @@
       
 
       
-        <h6 id="初学者避免踩坑提示"><a href="#初学者避免踩坑提示" class="headerlink" title="初学者避免踩坑提示"></a>初学者避免踩坑提示</h6><ol>
+        <h2 id="初学者避免踩坑提示"><a href="#初学者避免踩坑提示" class="headerlink" title="初学者避免踩坑提示"></a>初学者避免踩坑提示</h2><ol>
 <li>如果想引用自己生成的so库，文件包名的路径必须和c文件夹中函数名的路径保持一致。<a id="more"></a></li>
 </ol>
-<p>以下是源文件中c代码的路径：<br><img src="https://upload-images.jianshu.io/upload_images/7174469-b122d171c48b505e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="图一"><br>以下是我用另一个项目引用刚刚生成的so库 JNI的中的文件路径：<br><img src="https://upload-images.jianshu.io/upload_images/7174469-9a95e7d6e41f6def.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="图二"></p>
+<ul>
+<li>以下是源文件中c代码的路径：<br><img src="https://upload-images.jianshu.io/upload_images/7174469-b122d171c48b505e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="图一"></li>
+<li>以下是我用另一个项目引用刚刚生成的so库 JNI的中的文件路径：<br><img src="https://upload-images.jianshu.io/upload_images/7174469-9a95e7d6e41f6def.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="图二"></li>
+</ul>
 <ol start="2">
 <li>在demo中自动生成的so库，自动在so库前面追加了一个“lib”，在使用System.loadLibrary(“native-lib”)时候需要去掉前缀“lib”</li>
 </ol>
@@ -529,7 +532,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-6"><a class="nav-link" href="#初学者避免踩坑提示"><span class="nav-number">1.</span> <span class="nav-text">初学者避免踩坑提示</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#初学者避免踩坑提示"><span class="nav-number">1.</span> <span class="nav-text">初学者避免踩坑提示</span></a></li></ol></div>
             
 
           </div>
