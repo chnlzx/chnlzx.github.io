@@ -367,19 +367,14 @@
 
       
         
-          
-            <p>开发过程中往往会引用到第三方的jar包或者library或者so文件，那么怎样将自己的一些文件打成jar包供别人使用或者自己使用呢，还有那些文件中的jar中可能会涉及到一些重要的接口和方法，又怎样混淆呢？今天小冷总结一下如何将library打包成jar包并做混淆处理</p>
-<h3 id="准备好自己将要打包的library"><a href="#准备好自己将要打包的library" class="headerlink" title="准备好自己将要打包的library"></a><a href="#准备好自己将要打包的library" title="准备好自己将要打包的library"></a>准备好自己将要打包的library</h3><p>图一中的library是我即将打包的library里面含有两个工具类文件<br><img src="https://upload-images.jianshu.io/upload_images/7174469-700b1521a2ecd486.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="图一"></p>
-<h3 id="在mylibrary-gradle文件中做混淆打包的配置"><a href="#在mylibrary-gradle文件中做混淆打包的配置" class="headerlink" title="在mylibrary.gradle文件中做混淆打包的配置"></a><a href="#在mylibrary-gradle文件中做混淆打包的配置" title="在mylibrary.gradle文件中做混淆打包的配置"></a>在mylibrary.gradle文件中做混淆打包的配置</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">def SDK_BASENAME = <span class="string">"myjar"</span>;</span><br><span class="line">def SDK_VERSION = <span class="string">"_v1.0.0"</span>;</span><br><span class="line">def sdkDestinationPath = <span class="string">"build/outputs/jar/"</span>;</span><br><span class="line">def zipFile = file(<span class="string">'build/intermediates/bundles/release/classes.jar'</span>)</span><br><span class="line"><span class="function">task <span class="title">deleteBuild</span><span class="params">(type: Delete)</span> </span>&#123;</span><br><span class="line">    delete sdkDestinationPath + SDK\_BASENAME + SDK\_VERSION + <span class="string">".jar"</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function">task <span class="title">makeJar</span><span class="params">(type: Jar)</span> </span>&#123;</span><br><span class="line">    <span class="function">from <span class="title">zipTree</span><span class="params">(zipFile)</span></span></span><br><span class="line"><span class="function"> from <span class="title">fileTree</span><span class="params">(dir: <span class="string">'src/main'</span>, includes: \[<span class="string">'assets/**'</span>\])</span> <span class="comment">// 打包assets目录下的所有文件</span></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function"> baseName </span>= SDK\_BASENAME + SDK\_VERSION</span><br><span class="line">    destinationDir = file(sdkDestinationPath)</span><br><span class="line">&#125;</span><br><span class="line">makeJar.dependsOn(deleteBuild, build)</span><br></pre></td></tr></table></figure>
-<p>如下图：<br><img src="https://upload-images.jianshu.io/upload_images/7174469-917ab13423e9931a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="图二"></p>
-<h3 id="在proguard-rules-pro文件中配置混淆文件"><a href="#在proguard-rules-pro文件中配置混淆文件" class="headerlink" title="在proguard-rules.pro文件中配置混淆文件"></a><a href="#在proguard-rules-pro文件中配置混淆文件" title="在proguard-rules.pro文件中配置混淆文件"></a>在proguard-rules.pro文件中配置混淆文件</h3><p>proguard-rules.pro混淆文件地址<a href="https://github.com/chnlzx/Demo/blob/master/mylibrary/proguard-rules.pro" target="_blank" rel="noopener">点我查看</a></p>
-<h3 id="在Terminal命令窗口下输入打包命令："><a href="#在Terminal命令窗口下输入打包命令：" class="headerlink" title="在Terminal命令窗口下输入打包命令："></a>在Terminal命令窗口下输入打包命令：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ gradlew makeJar</span><br></pre></td></tr></table></figure>
-<p>直到下面生成BUILD SUCCESSFUL的提示就打包成功了。我刚开始在输入这个gradlew makeJar命令时候多次报 找不到 Tool.jar的错误，没办法我只能重装了一遍jdk（泪奔）然后顺利解决。最后就神奇在output文件夹下发现一个jar文件。如下图<br><img src="https://upload-images.jianshu.io/upload_images/7174469-1734feb313539439.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="图三"></p>
-<h3 id="引用自己的jar测试能不能用"><a href="#引用自己的jar测试能不能用" class="headerlink" title="引用自己的jar测试能不能用"></a>引用自己的jar测试能不能用</h3><p>引用后发现系统已经将里面的参数做了混淆 如下图<br><img src="https://upload-images.jianshu.io/upload_images/7174469-dea4cd0b3b3848d8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="图四"></p>
-<p>小冷在打jar包时候，发现多次打了个空包。应该是全部都被混淆忽略掉了，此时需要留一个入口class文件不可混略。在生成Jar时可能会出现各种奇葩的错误，只要根据错误提示来修改就没啥问题。</p>
-<h3 id="github中的demo地址"><a href="#github中的demo地址" class="headerlink" title="github中的demo地址"></a>github中的demo地址</h3><p>Android studio下将library打包成jar并加密混淆<a href="https://github.com/chnlzx/Demo" target="_blank" rel="noopener">github中demo传送门</a></p>
-
-          
+          <p>开发过程中往往会引用到第三方的jar包或者library或者so文件，那么怎样将自己的一些文件打成jar包供别人使用或者自己使用呢，还有那些文件中的jar中可能会涉及到一些重要的接口和方法，又怎样混淆呢？今天小冷总结一下如何将library打包成jar包并做混淆处理
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/08/13/Android-Studio打包module成Jar并混淆/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -729,7 +724,7 @@
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-count">2</span>
                   <span class="site-state-item-name">标签</span>
                 
               </div>
