@@ -297,7 +297,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://xiaoleng.me/2018/08/10/Android studio生成SO库文件并使用/">
+    <link itemprop="mainEntityOfPage" href="http://xiaoleng.me/2018/08/10/Android-Studio创建SO库并在项目中使用/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Shawn Leng">
@@ -316,7 +316,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/08/10/Android studio生成SO库文件并使用/" itemprop="url">Android Studio生成SO库文件并使用</a></h1>
+                <a class="post-title-link" href="/2018/08/10/Android-Studio创建SO库并在项目中使用/" itemprop="url">Android Studio创建SO库并在项目中使用</a></h1>
         
 
         <div class="post-meta">
@@ -328,7 +328,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-10T18:41:34+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-10T19:00:17+08:00">
                 2018-08-10
               </time>
             
@@ -368,7 +368,14 @@
       
         
           
-            
+            <h6 id="初学者避免踩坑提示"><a href="#初学者避免踩坑提示" class="headerlink" title="初学者避免踩坑提示"></a>初学者避免踩坑提示</h6><ol>
+<li>如果想引用自己生成的so库，文件包名的路径必须和c文件夹中函数名的路径保持一致。</li>
+</ol>
+<p>以下是源文件中c代码的路径：<br><img src="https://upload-images.jianshu.io/upload_images/7174469-b122d171c48b505e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="图一"><br>以下是我用另一个项目引用刚刚生成的so库 JNI的中的文件路径：<br><img src="https://upload-images.jianshu.io/upload_images/7174469-9a95e7d6e41f6def.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="图二"></p>
+<ol start="2">
+<li>在demo中自动生成的so库，自动在so库前面追加了一个“lib”，在使用System.loadLibrary(“native-lib”)时候需要去掉前缀“lib”</li>
+</ol>
+
           
         
       
@@ -589,15 +596,6 @@
 
             
 
-            
-              
-              
-              <div class="site-state-item site-state-tags">
-                
-                  <span class="site-state-item-count">1</span>
-                  <span class="site-state-item-name">标签</span>
-                
-              </div>
             
 
           </nav>
