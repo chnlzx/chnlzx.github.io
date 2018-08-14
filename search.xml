@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[TEST]]></title>
+    <url>%2F2018%2F08%2F14%2FTEST%2F</url>
+    <content type="text"></content>
+  </entry>
+  <entry>
     <title><![CDATA[Android Studio打包module成Jar并混淆]]></title>
     <url>%2F2018%2F08%2F13%2FAndroid-Studio%E6%89%93%E5%8C%85module%E6%88%90Jar%E5%B9%B6%E6%B7%B7%E6%B7%86%2F</url>
     <content type="text"><![CDATA[开发过程中往往会引用到第三方的jar包或者library或者so文件，那么怎样将自己的一些文件打成jar包供别人使用或者自己使用呢，还有那些文件中的jar中可能会涉及到一些重要的接口和方法，又怎样混淆呢？今天小冷总结一下如何将library打包成jar包并做混淆处理 准备好自己将要打包的library图一中的library是我即将打包的library里面含有两个工具类文件 在mylibrary.gradle文件中做混淆打包的配置123456789101112131415def SDK_BASENAME = "myjar";def SDK_VERSION = "_v1.0.0";def sdkDestinationPath = "build/outputs/jar/";def zipFile = file('build/intermediates/bundles/release/classes.jar')task deleteBuild(type: Delete) &#123; delete sdkDestinationPath + SDK\_BASENAME + SDK\_VERSION + ".jar"&#125;task makeJar(type: Jar) &#123; from zipTree(zipFile) from fileTree(dir: 'src/main', includes: \['assets/**'\]) // 打包assets目录下的所有文件 baseName = SDK\_BASENAME + SDK\_VERSION destinationDir = file(sdkDestinationPath)&#125;makeJar.dependsOn(deleteBuild, build) 如下图： 在proguard-rules.pro文件中配置混淆文件proguard-rules.pro混淆文件地址点我查看 在Terminal命令窗口下输入打包命令：1$ gradlew makeJar 直到下面生成BUILD SUCCESSFUL的提示就打包成功了。我刚开始在输入这个gradlew makeJar命令时候多次报 找不到 Tool.jar的错误，没办法我只能重装了一遍jdk（泪奔）然后顺利解决。最后就神奇在output文件夹下发现一个jar文件。如下图 引用自己的jar测试能不能用引用后发现系统已经将里面的参数做了混淆 如下图 小冷在打jar包时候，发现多次打了个空包。应该是全部都被混淆忽略掉了，此时需要留一个入口class文件不可混略。在生成Jar时可能会出现各种奇葩的错误，只要根据错误提示来修改就没啥问题。 github中的demo地址Android studio下将library打包成jar并加密混淆github中demo传送门]]></content>
