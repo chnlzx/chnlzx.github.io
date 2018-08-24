@@ -4,6 +4,26 @@
 
     
   <url>
+    <loc>http://xiaoleng.me/2018/08/13/Android-Studio%E6%89%93%E5%8C%85module%E6%88%90Jar%E5%B9%B6%E6%B7%B7%E6%B7%86/</loc>
+    <lastmod>2018-08-24T07:44:46.695Z</lastmod>
+    <data>
+        <display>
+        <title>Android Studio打包module成Jar并混淆</title>
+        <pubTime>2018-08-13T01:32:30.000Z</pubTime>
+        
+        <tag>SDK</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="http://xiaoleng.me/categories/Android/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://xiaoleng.me/2018/08/24/android-studio%E7%AD%BE%E5%90%8D%E6%89%93%E5%8C%85%E5%B9%B6%E6%B7%B7%E6%B7%86/</loc>
     <lastmod>2018-08-24T06:01:04.319Z</lastmod>
     <data>
@@ -57,21 +77,4 @@
     </url>
 
     
-    
-  <url>
-    <loc>http://xiaoleng.me/2018/08/13/Android-Studio%E6%89%93%E5%8C%85module%E6%88%90Jar%E5%B9%B6%E6%B7%B7%E6%B7%86/</loc>
-    <lastmod>2018-08-13T01:35:41.042Z</lastmod>
-    <data>
-        <display>
-        <title>Android Studio打包module成Jar并混淆</title>
-        <pubTime>2018-08-13T01:32:30.000Z</pubTime>
-        
-        <tag>SDK</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
 </urlset>
