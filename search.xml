@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title><![CDATA[TEST]]></title>
-    <url>%2F2018%2F08%2F14%2FTEST%2F</url>
-    <content type="text"></content>
+    <title><![CDATA[android studio签名打包并混淆]]></title>
+    <url>%2F2018%2F08%2F24%2Fandroid-studio%E7%AD%BE%E5%90%8D%E6%89%93%E5%8C%85%E5%B9%B6%E6%B7%B7%E6%B7%86%2F</url>
+    <content type="text"><![CDATA[前言打包混淆对初学者小冷来说是很抗拒的，刚开始我只是知道在build.gradle文件 minifyEnabled下设置为true，可是proguard-rules.pro文件里面什么都没有，就这样签名打包了，结果必然是打包不成功的。后来又在网上粘了一堆proguard-rules.pro文件，结果还是打包失败，陆陆续续的经过了很长一段时间，这个问题就被我搁置了，以致于apk包一直处于“裸奔”状态。 介绍直到小冷亲自打jar包时候才发现了一些端倪，代码在做混淆时候，如果proguard-rules.pro文件里面什么都没配置，那默认你的大部分代码要被混淆的找不到了，即使能打包成功，所以在做混淆时候一定要注意引用的部分库，是否避免被混淆。如果打包后产生crash那就要根据提示查看是那些库被混淆了。 常用混淆语句 保留部分包文的文件不被混淆 1$ -keep class com.chad.baserecyclerviewadapterhelper.entity.** &#123;*;&#125; 保留某一个文件不被混淆 1$ -keep class com.chad.baserecyclerviewadapterhelper.util.SpannableStringUtils&#123;*;&#125; 保留继承的某一类文件不被混淆 1$ -keep public class * extends android.app.Activity 不提示警告 1$ -dontwarn com.handmark.pulltorefresh.library.** 小冷用到的避免混淆文件（仅供参考）proguard-rules.pro在这里可能会被复制到，简书复制粘贴有点扯点我查看 总结一些跟so库相关的文件千万要保留避免被混淆，因为他的类名往往是跟so库中c代码文件名是绑定的，混淆后就会找不到so库。混淆后代码高度压缩apk明显变小，大量类名被abc等代替，即使被反编译看代码估计也是件痛苦的事。]]></content>
+      <tags>
+        <tag>Android</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[Android Studio打包module成Jar并混淆]]></title>
