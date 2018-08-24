@@ -89,7 +89,7 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/7174469-9616881a1b20e5f8.png">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/7174469-453bf35b7933f056.png">
-<meta property="og:updated_time" content="2018-08-24T03:27:25.934Z">
+<meta property="og:updated_time" content="2018-08-24T03:30:39.952Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="android studio签名打包并混淆">
 <meta name="twitter:description" content="前言打包混淆对初学者小冷来说是很抗拒的，刚开始我只是知道在build.gradle文件 minifyEnabled下设置为true，可是proguard-rules.pro文件里面什么都没有，就这样签名打包了，结果必然是打包不成功的。后来又在网上粘了一堆proguard-rules.pro文件，结果还是打包失败，陆陆续续的经过了很长一段时间，这个问题就被我搁置了，以致于apk包一直处于“裸奔”状态">
@@ -376,7 +376,7 @@
       
 
       
-        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>打包混淆对初学者小冷来说是很抗拒的，刚开始我只是知道在build.gradle文件 minifyEnabled下设置为true，可是proguard-rules.pro文件里面什么都没有，就这样签名打包了，结果必然是打包不成功的。后来又在网上粘了一堆proguard-rules.pro文件，结果还是打包失败，陆陆续续的经过了很长一段时间，这个问题就被我搁置了，以致于apk包一直处于“裸奔”状态。</p>
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>打包混淆对初学者小冷来说是很抗拒的，刚开始我只是知道在build.gradle文件 minifyEnabled下设置为true，可是proguard-rules.pro文件里面什么都没有，就这样签名打包了，结果必然是打包不成功的。后来又在网上粘了一堆proguard-rules.pro文件，结果还是打包失败，陆陆续续的经过了很长一段时间，这个问题就被我搁置了，以致于apk包一直处于“裸奔”状态。<a id="more"></a></p>
 <h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>直到小冷亲自打jar包时候才发现了一些端倪，代码在做混淆时候，如果proguard-rules.pro文件里面什么都没配置，那默认你的大部分代码要被混淆的找不到了，即使能打包成功，所以在做混淆时候一定要注意引用的部分库，是否避免被混淆。如果打包后产生crash那就要根据提示查看是那些库被混淆了。</p>
 <h2 id="常用混淆语句"><a href="#常用混淆语句" class="headerlink" title="常用混淆语句"></a>常用混淆语句</h2><ol>
 <li>保留部分包文的文件不被混淆</li>

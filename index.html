@@ -371,31 +371,14 @@
 
       
         
-          
-            <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>打包混淆对初学者小冷来说是很抗拒的，刚开始我只是知道在build.gradle文件 minifyEnabled下设置为true，可是proguard-rules.pro文件里面什么都没有，就这样签名打包了，结果必然是打包不成功的。后来又在网上粘了一堆proguard-rules.pro文件，结果还是打包失败，陆陆续续的经过了很长一段时间，这个问题就被我搁置了，以致于apk包一直处于“裸奔”状态。</p>
-<h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>直到小冷亲自打jar包时候才发现了一些端倪，代码在做混淆时候，如果proguard-rules.pro文件里面什么都没配置，那默认你的大部分代码要被混淆的找不到了，即使能打包成功，所以在做混淆时候一定要注意引用的部分库，是否避免被混淆。如果打包后产生crash那就要根据提示查看是那些库被混淆了。</p>
-<h2 id="常用混淆语句"><a href="#常用混淆语句" class="headerlink" title="常用混淆语句"></a>常用混淆语句</h2><ol>
-<li>保留部分包文的文件不被混淆</li>
-</ol>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ -keep class com.chad.baserecyclerviewadapterhelper.entity.** &#123;*;&#125;</span><br></pre></td></tr></table></figure>
-<p><img src="https://upload-images.jianshu.io/upload_images/7174469-9616881a1b20e5f8.png" alt="图一"></p>
-<ol start="2">
-<li>保留某一个文件不被混淆</li>
-</ol>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$   -keep class com.chad.baserecyclerviewadapterhelper.util.SpannableStringUtils&#123;*;&#125;</span><br></pre></td></tr></table></figure>
-<p><img src="https://upload-images.jianshu.io/upload_images/7174469-453bf35b7933f056.png" alt="图一"></p>
-<ol start="3">
-<li>保留继承的某一类文件不被混淆</li>
-</ol>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$   -keep public class * extends android.app.Activity</span><br></pre></td></tr></table></figure>
-<ol start="4">
-<li>不提示警告</li>
-</ol>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$   -dontwarn com.handmark.pulltorefresh.library.**</span><br></pre></td></tr></table></figure>
-<h2 id="小冷用到的避免混淆文件（仅供参考）"><a href="#小冷用到的避免混淆文件（仅供参考）" class="headerlink" title="小冷用到的避免混淆文件（仅供参考）"></a>小冷用到的避免混淆文件（仅供参考）</h2><p>proguard-rules.pro在这里可能会被复制到，简书复制粘贴有点扯<a href="https://github.com/chnlzx/test/blob/master/proguard-rules.pro" target="_blank" rel="noopener">点我查看</a></p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>一些跟so库相关的文件千万要保留避免被混淆，因为他的类名往往是跟so库中c代码文件名是绑定的，混淆后就会找不到so库。混淆后代码高度压缩apk明显变小，大量类名被abc等代替，即使被反编译看代码估计也是件痛苦的事。</p>
-
-          
+          <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>打包混淆对初学者小冷来说是很抗拒的，刚开始我只是知道在build.gradle文件 minifyEnabled下设置为true，可是proguard-rules.pro文件里面什么都没有，就这样签名打包了，结果必然是打包不成功的。后来又在网上粘了一堆proguard-rules.pro文件，结果还是打包失败，陆陆续续的经过了很长一段时间，这个问题就被我搁置了，以致于apk包一直处于“裸奔”状态。
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/08/24/android-studio签名打包并混淆/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
