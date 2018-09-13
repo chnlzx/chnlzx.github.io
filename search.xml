@@ -1,11 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title></title>
-    <url>%2F2018%2F09%2F08%2F%E6%9C%AA%E7%99%BB%E5%BD%95%E8%B7%B3%E8%BD%AC%E7%99%BB%E5%BD%95%E9%A1%B5-%E7%99%BB%E5%BD%95%E5%90%8E%E8%B7%B3%E8%BD%AC%E5%8E%9F%E6%9D%A5%E9%A1%B5%2F</url>
-    <content type="text"><![CDATA[前言在大多数APP中可能会碰到这样一个需求，用户点击下一步、下一步后有一个页面需要登录才能查看，在登录上去之后需要再次跳转到原来的页面。在之前小冷想了很多方法也实现了但是比较繁琐，直到看到CSDN一篇简短的文章觉得非常好，小冷在此记录一下。 思路从A界面跳转到B界面，判断是否需要登录，需要登录时，记录下B界面的全类名，通过intent传递给LoginActivity，不需要登录直接跳转到LoginActivity。等登录成功后检查获取到的intent中的全类名，通过反射跳转到之前记录的B界面。 使用方法A跳转B123Intent intent= new Intent(this,NextActivty.class);intent.putString("key","value");startActivityAfterLogin(intent); 1234567891011public void startActivityAfterLogin(Context context,Intent intent) &#123; //未登录（这里用自己的登录逻辑去判断是否未登录） if (! UserUtils.getLoginStatus()) &#123;//修改为自己的判断登录状态方法 ComponentName componentName = new ComponentName(context, LoginActivity.class); intent.putExtra("className", intent.getComponent().getClassName()); intent.setComponent(componentName); super.startActivity(intent); &#125; else &#123; super.startActivity(intent); &#125;&#125; LoginActivity跳转B12Intent intent= new Intent(this,NextActivty.class);startActivityAfterLogin(intent); 12345678910111213if (getIntent().getExtras() != null &amp;&amp; getIntent().getExtras().getString("className") != null) &#123; String className = getIntent().getExtras().getString("className"); getIntent().removeExtra("className"); if (className != null &amp;&amp; !className.equals(context.getClass().getName())) &#123; try &#123; ComponentName componentName = new ComponentName(context, Class.forName(className)); startActivity(getIntent().setComponent(componentName)); &#125; catch (ClassNotFoundException e) &#123; e.printStackTrace(); &#125; &#125;&#125;finish(); 小结把上面两个方法放在BaseActivity内，即可轻松实现需求。两个方法最主要用到ComponentName这个类和反射方式获取类名这两个关键点 说明实现的方法由CSDN中的一位博主提供 点我查看]]></content>
-  </entry>
-  <entry>
     <title><![CDATA[Hello World]]></title>
     <url>%2F2018%2F09%2F04%2Fhello-world%2F</url>
     <content type="text"><![CDATA[Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick StartCreate a new post1$ hexo new "My New Post" More info: Writing Run server1$ hexo server More info: Server Generate static files1$ hexo generate More info: Generating Deploy to remote sites1$ hexo deploy More info: Deployment]]></content>
@@ -27,6 +22,17 @@
       </categories>
       <tags>
         <tag>SDK</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[登录和未登录调整逻辑]]></title>
+    <url>%2F2018%2F08%2F13%2F%E6%9C%AA%E7%99%BB%E5%BD%95%E8%B7%B3%E8%BD%AC%E7%99%BB%E5%BD%95%E9%A1%B5-%E7%99%BB%E5%BD%95%E5%90%8E%E8%B7%B3%E8%BD%AC%E5%8E%9F%E6%9D%A5%E9%A1%B5%2F</url>
+    <content type="text"><![CDATA[前言在大多数APP中可能会碰到这样一个需求，用户点击下一步、下一步后有一个页面需要登录才能查看，在登录上去之后需要再次跳转到原来的页面。在之前小冷想了很多方法也实现了但是比较繁琐，直到看到CSDN一篇简短的文章觉得非常好，小冷在此记录一下。 思路从A界面跳转到B界面，判断是否需要登录，需要登录时，记录下B界面的全类名，通过intent传递给LoginActivity，不需要登录直接跳转到LoginActivity。等登录成功后检查获取到的intent中的全类名，通过反射跳转到之前记录的B界面。 使用方法A跳转B123Intent intent= new Intent(this,NextActivty.class);intent.putString("key","value");startActivityAfterLogin(intent); 1234567891011public void startActivityAfterLogin(Context context,Intent intent) &#123; //未登录（这里用自己的登录逻辑去判断是否未登录） if (! UserUtils.getLoginStatus()) &#123;//修改为自己的判断登录状态方法 ComponentName componentName = new ComponentName(context, LoginActivity.class); intent.putExtra("className", intent.getComponent().getClassName()); intent.setComponent(componentName); super.startActivity(intent); &#125; else &#123; super.startActivity(intent); &#125;&#125; LoginActivity跳转B12Intent intent= new Intent(this,NextActivty.class);startActivityAfterLogin(intent); 12345678910111213if (getIntent().getExtras() != null &amp;&amp; getIntent().getExtras().getString("className") != null) &#123; String className = getIntent().getExtras().getString("className"); getIntent().removeExtra("className"); if (className != null &amp;&amp; !className.equals(context.getClass().getName())) &#123; try &#123; ComponentName componentName = new ComponentName(context, Class.forName(className)); startActivity(getIntent().setComponent(componentName)); &#125; catch (ClassNotFoundException e) &#123; e.printStackTrace(); &#125; &#125;&#125;finish(); 小结把上面两个方法放在BaseActivity内，即可轻松实现需求。两个方法最主要用到ComponentName这个类和反射方式获取类名这两个关键点 说明实现的方法由CSDN中的一位博主提供 点我查看]]></content>
+      <categories>
+        <category>Android</category>
+      </categories>
+      <tags>
+        <tag>登录状态</tag>
       </tags>
   </entry>
   <entry>
