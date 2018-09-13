@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="前言在大多数APP中可能会碰到这样一个需求，用户点击下一步、下一步后有一个页面需要登录才能查看，在登录上去之后需要再次跳转到原来的页面。在之前小冷想了很多方法也实现了但是比较繁琐，直到看到CSDN一篇简短的文章觉得非常好，小冷在此记录一下。 思路从A界面跳转到B界面，判断是否需要登录，需要登录时，记录下B界面的全类名，通过intent传递给LoginActivity，不需要登录直接跳转到Login">
+<meta name="description" content="前言在大多数APP中可能会碰到这样一个需求，用户点击下一步、下一步后有一个页面需要登录才能查看，在登录上去之后需要再次跳转到原来的页面。在之前小冷想了很多方法也实现了但是比较繁琐，直到看到CSDN一篇简短的文章觉得非常好，小冷在此记录一下。">
 <meta name="keywords" content="登录状态">
 <meta property="og:type" content="article">
 <meta property="og:title" content="登录和未登录调整逻辑">
 <meta property="og:url" content="http://xiaoleng.me/2018/09/12/未登录跳转登录页-登录后跳转原来页/index.html">
 <meta property="og:site_name" content="小冷的博客">
-<meta property="og:description" content="前言在大多数APP中可能会碰到这样一个需求，用户点击下一步、下一步后有一个页面需要登录才能查看，在登录上去之后需要再次跳转到原来的页面。在之前小冷想了很多方法也实现了但是比较繁琐，直到看到CSDN一篇简短的文章觉得非常好，小冷在此记录一下。 思路从A界面跳转到B界面，判断是否需要登录，需要登录时，记录下B界面的全类名，通过intent传递给LoginActivity，不需要登录直接跳转到Login">
+<meta property="og:description" content="前言在大多数APP中可能会碰到这样一个需求，用户点击下一步、下一步后有一个页面需要登录才能查看，在登录上去之后需要再次跳转到原来的页面。在之前小冷想了很多方法也实现了但是比较繁琐，直到看到CSDN一篇简短的文章觉得非常好，小冷在此记录一下。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-09-13T07:46:11.264Z">
+<meta property="og:updated_time" content="2018-09-13T07:47:46.173Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="登录和未登录调整逻辑">
-<meta name="twitter:description" content="前言在大多数APP中可能会碰到这样一个需求，用户点击下一步、下一步后有一个页面需要登录才能查看，在登录上去之后需要再次跳转到原来的页面。在之前小冷想了很多方法也实现了但是比较繁琐，直到看到CSDN一篇简短的文章觉得非常好，小冷在此记录一下。 思路从A界面跳转到B界面，判断是否需要登录，需要登录时，记录下B界面的全类名，通过intent传递给LoginActivity，不需要登录直接跳转到Login">
+<meta name="twitter:description" content="前言在大多数APP中可能会碰到这样一个需求，用户点击下一步、下一步后有一个页面需要登录才能查看，在登录上去之后需要再次跳转到原来的页面。在之前小冷想了很多方法也实现了但是比较繁琐，直到看到CSDN一篇简短的文章觉得非常好，小冷在此记录一下。">
 
 
 
@@ -405,7 +405,7 @@
       
 
       
-        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在大多数APP中可能会碰到这样一个需求，用户点击下一步、下一步后有一个页面需要登录才能查看，在登录上去之后需要再次跳转到原来的页面。在之前小冷想了很多方法也实现了但是比较繁琐，直到看到CSDN一篇简短的文章觉得非常好，小冷在此记录一下。</p>
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在大多数APP中可能会碰到这样一个需求，用户点击下一步、下一步后有一个页面需要登录才能查看，在登录上去之后需要再次跳转到原来的页面。在之前小冷想了很多方法也实现了但是比较繁琐，直到看到CSDN一篇简短的文章觉得非常好，小冷在此记录一下。<a id="more"></a></p>
 <h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>从A界面跳转到B界面，判断是否需要登录，需要登录时，记录下B界面的全类名，通过intent传递给LoginActivity，不需要登录直接跳转到LoginActivity。等登录成功后检查获取到的intent中的全类名，通过反射跳转到之前记录的B界面。</p>
 <h2 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h2><h4 id="A跳转B"><a href="#A跳转B" class="headerlink" title="A跳转B"></a>A跳转B</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Intent intent= new Intent(this,NextActivty.class);</span><br><span class="line">intent.putString(<span class="string">"key"</span>,<span class="string">"value"</span>);</span><br><span class="line">startActivityAfterLogin(intent);</span><br></pre></td></tr></table></figure>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">startActivityAfterLogin</span><span class="params">(Context context,Intent intent)</span> </span>&#123;</span><br><span class="line">    <span class="comment">//未登录（这里用自己的登录逻辑去判断是否未登录）</span></span><br><span class="line">    <span class="keyword">if</span> (! UserUtils.getLoginStatus()) &#123;<span class="comment">//修改为自己的判断登录状态方法</span></span><br><span class="line">        ComponentName componentName = <span class="keyword">new</span> ComponentName(context, LoginActivity.class);</span><br><span class="line">        intent.putExtra(<span class="string">"className"</span>, intent.getComponent().getClassName());</span><br><span class="line">        intent.setComponent(componentName);</span><br><span class="line">        <span class="keyword">super</span>.startActivity(intent);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">super</span>.startActivity(intent);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
